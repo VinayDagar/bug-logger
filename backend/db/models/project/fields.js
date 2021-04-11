@@ -4,7 +4,7 @@ module.exports = {
         primaryKey: true,
     },
     projectName: {
-        type: Sequelize.TEXT,
+        type: Sequelize.STRING,
         trim: true,
         field: "project_name"
     },
@@ -16,5 +16,8 @@ module.exports = {
         type: Sequelize.TEXT,
         allowNull: false,
         field: "created_by"
+    },
+    description: {
+        type: Sequelize.TEXT,
     }
 }

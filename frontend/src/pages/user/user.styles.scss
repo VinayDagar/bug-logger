@@ -23,3 +23,430 @@
         position       : relative;
     }
 }
+
+.taskHubSection {
+    min-height: 90px;
+    margin    : 32px auto;
+
+    .projectHubList {
+        display  : flex;
+        flex-flow: row wrap;
+        padding  : 16px 20px 16px 20px;
+    }
+
+    .taskHubHeader {
+        align-items    : center;
+        border-bottom  : 2px solid #e8ecee;
+        display        : flex;
+        flex-wrap      : wrap;
+        margin-left    : 24px;
+        margin-right   : 24px;
+        padding        : 8px 0;
+        position       : relative;
+        justify-content: space-between;
+
+        .taskSectionTitle {
+            align-items   : center;
+            cursor        : pointer;
+            display       : flex;
+            flex-direction: row;
+
+            .taskHubTitle {
+                font-size  : 16px;
+                line-height: 20px;
+                box-sizing : border-box;
+                color      : #151b26;
+                display    : flex;
+            }
+        }
+    }
+
+    .taskSectionRight {
+        .taskSectionRightLink {
+            cursor: pointer;
+            color : #14aaf5;
+            fill  : #14aaf5;
+        }
+    }
+}
+
+// Manage Project
+
+.projectMain {
+    align-items: center;
+    background : #fff;
+    box-shadow : 0 1px 4px 0 rgb(21 27 38 / 8%);
+    display    : flex;
+    flex-shrink: 0;
+    min-height : 72px;
+    padding    : 0 24px;
+    position   : relative;
+    z-index    : 200;
+
+    .projectTopBar {
+        display  : inline-flex;
+        flex     : 1 1 auto;
+        min-width: 1px;
+
+        .projectTitleContainer {
+            align-items   : flex-start;
+            box-sizing    : border-box;
+            display       : flex;
+            flex          : 1;
+            flex-direction: column;
+            min-width     : 1px;
+
+            .title {
+                font-family  : -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+                font-size    : 20px;
+                font-weight  : 500;
+                line-height  : 28px;
+                align-items  : center;
+                color        : #151b26;
+                flex         : 0 1 auto;
+                min-width    : 1px;
+                overflow     : hidden;
+                text-overflow: ellipsis;
+                white-space  : nowrap;
+            }
+        }
+    }
+
+}
+
+.projectPageSection {
+    display       : flex;
+    flex          : 1 1 auto;
+    flex-direction: column;
+    min-height    : 1px;
+    position      : relative;
+
+    .projectPageOverview {
+        display   : flex;
+        flex      : 1 1 auto;
+        height    : 100%;
+        min-height: 1px;
+        min-width : 1px;
+        width     : 100%;
+
+        .projectOverview-content {
+            display: block;
+            width  : 100%;
+        }
+
+        .pageOverview-mainContent {
+            border-color    : #e8ecee;
+            border-style    : solid none none;
+            border-width    : 1px;
+            background-color: #fff;
+            flex            : 1 1 auto;
+            min-width       : 1px;
+            position        : relative;
+            padding         : 45px;
+
+            .memberSection-content {
+                .memberSection-memberGrid {
+                    display              : grid;
+                    grid-gap             : 8px;
+                    grid-template-columns: repeat(auto-fill, minmax(181px, 1fr));
+                    justify-content      : space-between;
+
+                    .baseCard {
+                        background         : #fff;
+                        border             : 1px solid #e8ecee;
+                        border-radius      : 8px;
+                        box-shadow         : none;
+                        transition-duration: 200ms;
+                        transition-property: background, border-color, box-shadow;
+                        display            : flex;
+                        padding            : 8px;
+
+                        .memberAvatarContainer {
+                            align-items : center;
+                            display     : flex;
+                            margin-right: 8px;
+                            flex        : 0;
+
+                            .memberAvatar {
+                                align-items               : center;
+                                background                : center/cover #cbd4db;
+                                border-radius             : 50%;
+                                box-shadow                : inset 0 0 0 1px rgb(0 0 0 / 7%);
+                                box-sizing                : border-box;
+                                color                     : #fff;
+                                -webkit-print-color-adjust: exact;
+                                color-adjust              : exact;
+                                display                   : inline-flex;
+                                justify-content           : center;
+                                position                  : relative;
+                                vertical-align            : top;
+                            }
+                        }
+
+                        .memberInfoContainer {
+                            display        : flex;
+                            flex           : 1;
+                            flex-direction : column;
+                            justify-content: center;
+                            min-width      : 1px;
+
+                            .memberInfo {
+                                display: block;
+
+                                .infoHeading {
+                                    font-size    : 14px;
+                                    line-height  : 20px;
+                                    overflow     : hidden;
+                                    text-overflow: ellipsis;
+                                    white-space  : nowrap;
+                                    font-weight  : 500;
+                                    color        : #151b26;
+                                    font-family  : -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+                                    margin       : 0;
+                                }
+                            }
+
+                            .role {
+                                font-family  : -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+                                color        : #6f7782;
+                                overflow     : hidden;
+                                text-overflow: ellipsis;
+                                white-space  : nowrap;
+                                font-size    : 12px;
+                                line-height  : 18px;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .projectOverviewSection-headingContainer {
+                align-items     : center;
+                // display      : flex;
+                margin-bottom   : 8px;
+
+                .projectOverviewSection-heading {
+                    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+                    font-size  : 20px;
+                    font-weight: 500;
+                    line-height: 28px;
+                }
+
+                .descriptionContainer {
+                    font-family        : -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+                    font-size          : 14px;
+                    font-weight        : 400;
+                    line-height        : 22px;
+                    background-color   : #fff;
+                    // padding         : 0 12px;
+                    box-sizing         : border-box;
+                    margin-top         : 20px;
+                }
+
+                .descriptionContainer-wrapper {
+
+                    textarea,
+                    textarea:focus {
+                        border : none;
+                        outline: none;
+                    }
+                }
+
+
+
+                //     left               : 0;
+                //     padding            : inherit;
+                //     pointer-events     : none;
+                //     position           : absolute;
+                //     right              : 0;
+                //     top                : 0;
+                //     -webkit-user-select: none;
+                //     -moz-user-select   : none;
+                //     -ms-user-select    : none;
+                //     user-select        : none;
+                // }
+            }
+        }
+
+        .activityFeed {
+            border-color    : #e8ecee;
+            border-style    : solid;
+            border-width    : 1px;
+            background-color: #f6f8f9;
+            box-sizing      : border-box;
+            flex            : 0 0 398px;
+            min-width       : 398px;
+
+            .timelineContainer {
+                min-height: 1px;
+                overflow-y: auto;
+                padding   : 24px;
+                width     : 100%;
+
+                .reportSection {
+                    margin-bottom: 48px;
+
+                    .reportSection-heading {
+                        align-items    : center;
+                        display        : flex;
+                        justify-content: space-between;
+                        margin-bottom  : 12px;
+
+                        .heading {
+                            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+                            font-size  : 20px;
+                            line-height: 28px;
+                            font-weight: 500;
+                            color      : #6f7782;
+                        }
+                    }
+
+                    .reportSection-stopLightContainer {
+                        display: block;
+
+                        .stopLightButtonContainer {
+                            background         : #fff;
+                            border-color       : #cbd4db;
+                            color              : #273240;
+                            fill               : #00bf9c;
+                            font-size          : 14px;
+                            height             : 36px;
+                            line-height        : 36px;
+                            padding            : 0 12px;
+                            cursor             : pointer;
+                            margin-right       : 8px;
+                            margin-bottom      : 4px;
+                            vertical-align     : middle;
+                            align-items        : center;
+                            border             : 1px solid;
+                            border-radius      : 6px;
+                            box-sizing         : border-box;
+                            display            : inline-flex;
+                            flex-shrink        : 0;
+                            justify-content    : center;
+                            overflow           : hidden;
+                            transition-duration: .2s;
+                            transition-property: background, border, box-shadow, color, fill;
+                            -webkit-user-select: none;
+                            -moz-user-select   : none;
+                            -ms-user-select    : none;
+                            user-select        : none;
+
+                            .statusContainer {
+                                align-items: center;
+                                display    : flex;
+
+                                .statusBox {
+                                    border-radius: 6px;
+                                    display      : inline-block;
+                                    flex         : 0 0 auto;
+                                    height       : 12px;
+                                    width        : 12px;
+                                    margin-right : 6px;
+                                }
+
+                                .greenbadge {
+                                    background: #00bf9c;
+                                }
+
+                                .yellowbadge {
+                                    background: #f2a100;
+                                }
+
+                                .redbadge {
+                                    background: #ed4758;
+                                }
+
+                                .statusText {
+                                    font-size  : 14px;
+                                    line-height: 22px;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .timelineContainer-wrapper {
+                    display: flex;
+
+                    .activeFeed-container {
+                        display       : flex;
+                        flex          : 0 0 16px;
+                        flex-direction: column;
+                        margin-right  : 8px;
+
+                        .activeFeed-iconContainer {
+                            align-items: center;
+                            display    : flex;
+                            fill       : #6f7782;
+                            height     : 20px;
+                        }
+
+                        .activeFeed-line {
+                            flex     : 1 0 auto;
+                            min-width: 1px;
+                            position : relative;
+                        }
+
+                        .activeFeed-line::before {
+                            border       : 1px solid #cbd4db;
+                            border-radius: 4px;
+                            bottom       : 0;
+                            content      : " ";
+                            left         : 7px;
+                            position     : absolute;
+                            top          : 0;
+                            width        : 0;
+                        }
+
+                        .projectCreated {
+                            .activeFeed-line {
+                                flex     : 1 0 auto;
+                                min-width: 1px;
+                                position : relative;
+                            }
+
+                            .activeFeed-line::before {
+                                // border       : 1px solid #cbd4db;
+                                // border-radius: 4px;
+                                // bottom       : 0;
+                                // content      : " ";
+                                // left         : 7px;
+                                // position     : absolute;
+                                // top          : 0;
+                                // width        : 0;
+                                display: none;
+                            }
+                        }
+
+                    }
+
+                    .timelineContainer-content {
+                        margin-bottom: 32px;
+                        min-width    : 1px;
+
+                        .timeline-title {
+                            font-family       : -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+                            font-size         : 16px;
+                            line-height       : 20px;
+                            -webkit-box-orient: vertical;
+                            display           : -webkit-box;
+                            flex              : 1 1 auto;
+                            -webkit-line-clamp: 2;
+                            overflow          : hidden;
+                            font-weight       : 500;
+                            color             : #151b26;
+                        }
+
+                        .timeline-date {
+                            align-items: baseline;
+                            display    : flex;
+                            margin-top : 4px;
+                            min-width  : 1px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

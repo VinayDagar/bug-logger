@@ -121,20 +121,15 @@ const TextArea = (props) => {
     return (
         <div className="position-relative ant-form-vertical">
             <Form.Item className="from-field-input" label={props.label}>
-                <Controller
-                    as={
-                        <Input.TextArea
-                            placeholder={props.placeholder}
-                            style={props.style}
-                            disabled={props.disabled ? props.disabled : false}
-                            name={props.attribute}
-                            allowClear={props.allowClear ? props.allowClear : false}
-                            {...props.rest}
-                        />
-                    }
-                    rules={props.rules}
+                <Input.TextArea
+                    placeholder={props.placeholder}
+                    style={props.style}
+                    disabled={props.disabled ? props.disabled : false}
                     name={props.attribute}
-                    control={props.control}
+                    allowClear={props.allowClear ? props.allowClear : false}
+                    {...props.rest}
+                    value={props.value}
+                    onChange={(e) => props.onChange(e.target.value)}
                 />
                 {/* <Input.TextArea
                     placeholder={props.placeholder}

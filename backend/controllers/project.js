@@ -266,3 +266,32 @@ exports.getUserProjectListController = async (req, res, next) => {
         return next(err);
     }
 };
+
+exports.getProjectDetailController = async (req, res, next) => {
+    try {
+        const { projectId } = req.params;
+
+        const project = await domain.Project.findByPk(projectId, {
+            attributes: ["id", "projectName", "createdBy", "description", "createdAt"],
+            include: [{
+                model: domain.ProjectMember,
+                attributes: ["id", "name", "createdAt", "memberId"]
+            }, {
+                model: domain.User,
+                attributes: ["id", "name"]
+            }]
+        });
+
+        if (!project) {
+            const error = new Error("Project not found!");
+            error.statusCode = 404;
+            return next(error);
+        }
+
+        const response = views.JsonView(project);
+        return res.status(200).json(response);
+
+    } catch (err) {
+        return next(err);
+    }
+};

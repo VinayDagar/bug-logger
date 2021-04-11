@@ -4,7 +4,8 @@ const { validate } = require("express-validation");
 const {
     createProjectController, addProjectSectionController,
     addProjectMemberController, createTaskController,
-    assignTaskController, getUserProjectListController
+    assignTaskController, getUserProjectListController,
+    getProjectDetailController
 } = require("../../controllers/project");
 // middlewares
 const validationSchema = require("../../application/validations");
@@ -42,6 +43,11 @@ router.post(
         authenticated,
         canAccess(["user"]),
         getUserProjectListController
+    ).get(
+        "/details/:projectId",
+        authenticated,
+        canAccess(["user"]),
+        getProjectDetailController
     );
 
 module.exports = router;

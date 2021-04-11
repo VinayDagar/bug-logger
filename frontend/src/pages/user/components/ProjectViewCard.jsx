@@ -2,13 +2,12 @@ import React from 'react';
 import { MenuOutlined } from '@ant-design/icons';
 
 const ProjectViewCard = ({ projectName, memberList }) => {
-    console.log(projectName)
     return (
         <div className="projectCardContainer">
             <div className="projectCard" title={projectName}>
                 <div>
                     <div className="text-center">
-                        <MenuOutlined />
+                        <MenuOutlined style={{ fontSize: "30px" }} />
                     </div>
                     <div className="memberListContainer">
                         <div className="listWrapper">

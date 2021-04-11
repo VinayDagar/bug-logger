@@ -1,12 +1,22 @@
 import React from 'react';
-import { HomeOutlined, SettingOutlined, QuestionCircleOutlined, UsergroupAddOutlined, ContactsOutlined, MessageOutlined, FormOutlined } from '@ant-design/icons';
+import { HomeOutlined, CheckCircleOutlined, BellOutlined } from '@ant-design/icons';
 
 export default {
     items: [
         {
-            title: 'Dashboard',
-            url: '/user/dashboard',
+            title: 'Home',
+            url: '/user/home',
             icon: <HomeOutlined />,
+        },
+        {
+            title: 'My Task',
+            url: '/user/my-task',
+            icon: <CheckCircleOutlined />,
+        },
+        {
+            title: 'Inbox',
+            url: '/user/notifications',
+            icon: <BellOutlined />,
         }
     ],
 };
