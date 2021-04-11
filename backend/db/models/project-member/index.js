@@ -15,6 +15,10 @@ const ProjectMemberSchema = SequelizeConnect.define('ProjectMember', {
     projectId: {
         type: Sequelize.TEXT,
         allowNull: false
+    },
+    role: {
+        type: Sequelize.STRING,
+        trim: true
     }
 }, {
     tableName: 'project_member',

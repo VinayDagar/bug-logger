@@ -7,7 +7,8 @@ module.exports = async function (instance) {
             id: configHolder.generateUniqueId(),
             projectId: instance.id,
             memberId: instance.createdBy,
-            name: user.name
+            name: user.name,
+            role: "owner"
         });
 
         await domain.Section.create({

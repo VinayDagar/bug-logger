@@ -75,7 +75,12 @@ const ManageProject = (props) => {
                                 <div className="memberSection-memberGrid">
                                     {
                                         projectDetail?.ProjectMembers && projectDetail.ProjectMembers.map(a => (
-                                            <MemberRoleCard key={a.id} name={a.name} isOwner={a.memberId === projectDetail.createdBy} />
+                                            <MemberRoleCard
+                                                key={a.id}
+                                                name={a.name}
+                                                isOwner={a.memberId === projectDetail.createdBy}
+                                                role={a.role}
+                                            />
                                         ))
                                     }
                                 </div>

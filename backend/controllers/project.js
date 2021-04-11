@@ -275,7 +275,7 @@ exports.getProjectDetailController = async (req, res, next) => {
             attributes: ["id", "projectName", "createdBy", "description", "createdAt"],
             include: [{
                 model: domain.ProjectMember,
-                attributes: ["id", "name", "createdAt", "memberId"]
+                attributes: ["id", "name", "createdAt", "memberId", "role"]
             }, {
                 model: domain.User,
                 attributes: ["id", "name"]
