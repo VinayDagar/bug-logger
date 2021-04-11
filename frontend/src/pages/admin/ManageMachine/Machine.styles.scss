@@ -1,0 +1,13 @@
+.consumableTag {
+    font-size: 20px;
+    font-weight: 600;
+    background: #3a8be1;
+    color: #fff;
+    padding: 5px 15px 7px 15px;
+    border-radius: 50px;
+    display: inline-flex;
+
+    .tag-icon {
+        cursor: pointer;
+    }
+}

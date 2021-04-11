@@ -1,0 +1,35 @@
+@import "~bootstrap/scss/bootstrap";
+
+body {
+    overflow-x: hidden;
+}
+
+.from-field-input {
+    .ant-form-item-label {
+        display   : block;
+        text-align: left;
+        padding   : 0 !important;
+    }
+}
+
+.icheck .ant-row.ant-form-item.from-field-input {
+    margin-bottom: 5px;
+}
+
+// .position-relative.ant-form-vertical {
+//     &:nth-child(1) {
+//         .ant-col.ant-form-item-label {
+//         }
+//     }
+// }
+.requird-label {
+    &:before {
+        display     : inline-block;
+        margin-right: 4px;
+        color       : #ff4d4f;
+        font-size   : 14px;
+        font-family : SimSun, sans-serif;
+        line-height : 1;
+        content     : "*";
+    }
+}

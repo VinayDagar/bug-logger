@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "baseUrl": "src",
+        "target": "es2020",
+        "paths": {
+            "*": [
+                "src/*"
+            ]
+        }
+    },
+    "files": [".js", ".jsx"]
+}

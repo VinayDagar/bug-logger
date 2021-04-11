@@ -1,0 +1,25 @@
+.projectList {
+    display    : flex;
+    flex-flow  : row wrap;
+    padding-top: 16px;
+}
+
+.projectCardContainer {
+    height: 120px;
+    width : 120px;
+
+    .projectCard {
+        border-radius  : 20px;
+        height         : 100%;
+        width          : 100%;
+        box-shadow     : inset 0 -2px rgb(0 0 0 / 5%);
+        align-items    : center;
+        background     : #cbd4db;
+        display        : flex;
+        fill           : #fff;
+        flex-direction : column;
+        justify-content: center;
+        flex-flow      : column;
+        position       : relative;
+    }
+}
