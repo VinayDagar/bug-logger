@@ -5,7 +5,9 @@ const {
     createProjectController, addProjectSectionController,
     addProjectMemberController, createTaskController,
     assignTaskController, getUserProjectListController,
-    getProjectDetailController
+    getProjectDetailController, updateMemberRole,
+    removeMemberOwnership, setMemberOwnership,
+    removeMemberFromProject
 } = require("../../controllers/project");
 // middlewares
 const validationSchema = require("../../application/validations");
@@ -48,6 +50,26 @@ router.post(
         authenticated,
         canAccess(["user"]),
         getProjectDetailController
+    ).put(
+        "/update-member-role/:memberId",
+        authenticated,
+        canAccess(["user"]),
+        updateMemberRole
+    ).put(
+        "/remove-member-ownership/:projectId/:memberId",
+        authenticated,
+        canAccess(["user"]),
+        removeMemberOwnership
+    ).put(
+        "/set-member-ownership/:projectId/:memberId",
+        authenticated,
+        canAccess(["user"]),
+        setMemberOwnership
+    ).put(
+        "/remove-member-project/:projectId/:memberId",
+        authenticated,
+        canAccess(["user"]),
+        removeMemberFromProject
     );
 
 module.exports = router;

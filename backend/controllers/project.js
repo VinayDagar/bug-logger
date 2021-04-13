@@ -295,3 +295,145 @@ exports.getProjectDetailController = async (req, res, next) => {
         return next(err);
     }
 };
+
+exports.updateMemberRole = async (req, res, next) => {
+    try {
+        const { memberId } = req.params;
+        const { role } = req.body;
+
+        const projectMember = await domain.ProjectMember.findByPk(memberId);
+
+        if (!projectMember) {
+            const error = new Error("Member not found in the selected project!");
+            error.statuscode = 404;
+            return next(error);
+        }
+
+        await projectMember.update({ role });
+
+        const response = views.JsonView({ message: "role successfully added!" });
+        return res.status(200).json(response);
+
+    } catch (err) {
+        return next(err);
+    }
+};
+
+exports.removeMemberOwnership = async (req, res, next) => {
+    try {
+        const { projectId, memberId } = req.params;
+
+        const projectMember = await domain.ProjectMember.findOne({
+            where: {
+                $and: [
+                    { projectId },
+                    { memberId },
+                ]
+            }
+        });
+
+        if (!projectMember) {
+            const error = new Error("Member does not exist in the project!");
+            error.statusCode = 404;
+            return next(error);
+        }
+
+        const project = await domain.Project.findByPk(projectId, {
+            attributes: ["id", "createdBy"]
+        });
+
+        let response;
+        if (project.createdBy !== memberId) {
+            response = views.JsonView({ message: "Selected member is not the owner of project already!" });
+            return res.status(200).json(response);
+        }
+
+        await project.update({
+            createdBy: null
+        });
+
+        response = views.JsonView({ message: "member removed as owner!" });
+        return res.status(200).json(response);
+    } catch (err) {
+        return next(err);
+    }
+};
+
+exports.setMemberOwnership = async (req, res, next) => {
+    try {
+        const { projectId, memberId } = req.params;
+
+        const projectMember = await domain.ProjectMember.findOne({
+            where: {
+                $and: [
+                    { projectId },
+                    { memberId },
+                ]
+            }
+        });
+
+        if (!projectMember) {
+            const error = new Error("Member does not exist in the project!");
+            error.statusCode = 404;
+            return next(error);
+        }
+
+        const project = await domain.Project.findByPk(projectId, {
+            attributes: ["id", "createdBy"]
+        });
+
+        let response;
+        if (project.createdBy === memberId) {
+            response = views.JsonView({ message: "Selected member is already the owner of project!" });
+            return res.status(200).json(response);
+        }
+
+        await project.update({
+            createdBy: memberId
+        });
+
+        response = views.JsonView({ message: "" });
+        return res.status(200).json(response);
+    } catch (err) {
+        return next(err);
+    }
+};
+
+exports.removeMemberFromProject = async (req, res, next) => {
+    try {
+        const { projectId, memberId } = req.params;
+
+        const projectMember = await domain.ProjectMember.findOne({
+            where: {
+                $and: [
+                    { projectId },
+                    { memberId },
+                ]
+            }
+        });
+
+        if (!projectMember) {
+            const error = new Error("Member does not exist in the project!");
+            error.statusCode = 404;
+            return next(error);
+        }
+
+        const project = await domain.Project.findByPk(projectId, {
+            attributes: ["id", "createdBy"]
+        });
+
+        let response;
+        if (project.createdBy === memberId) {
+            const error = new Error("Can not remove te owner from the project!");
+            error.statusCode = 403;
+            return next(error);
+        }
+
+        await projectMember.destroy();
+
+        response = views.JsonView({ message: "removed" });
+        return res.status(200).json(response);
+    } catch (err) {
+        return next(err);
+    }
+};

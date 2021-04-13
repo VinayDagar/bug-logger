@@ -96,6 +96,53 @@
             flex-direction: column;
             min-width     : 1px;
 
+
+            .projectNavbar {
+                align-items    : flex-end;
+                align-self     : stretch;
+                display        : flex;
+                flex           : 1 0 auto;
+                justify-content: flex-start;
+                max-width      : 100%;
+                position       : relative;
+                white-space    : nowrap;
+
+                .tabbarList {
+                    display: flex;
+                }
+
+                ul {
+                    list-style: none;
+                    margin    : 0;
+                    padding   : 0;
+
+                    .tab {
+                        color              : #6f7782;
+                        cursor             : default;
+                        display            : flex;
+                        font-size          : 14px;
+                        font-weight        : 500;
+                        line-height        : normal;
+                        min-width          : 1px;
+                        transition-duration: .2s;
+                        transition-property: box-shadow, color;
+                        white-space        : nowrap;
+                        margin-right       : 20px;
+
+                        span {
+                            cursor: pointer;
+                        }
+                    }
+
+                    .tab-selected {
+                        color         : #4186e0;
+                        display       : block;
+                        padding-bottom: 10px;
+                        box-shadow    : inset 0 -2px #4186e0;
+                    }
+                }
+            }
+
             .title {
                 font-family  : -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
                 font-size    : 20px;
@@ -449,4 +496,10 @@
             }
         }
     }
+}
+
+.roleInputCotainer {
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
 }
