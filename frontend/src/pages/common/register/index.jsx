@@ -56,15 +56,15 @@ const Register = ({ login }) => {
         <div className="content">
             <div className="container">
                 <div className="row justify-content-center">
-                    <div className="col-md-5 image-background">
+                    <div className="col-md-6 image-background">
                         <img src={loginLeft} />
                     </div>
-                    <div className="col-md-7 form-background">
+                    <div className="col-md-6 form-background">
                         <div className="row justify-content-center">
-                            <div className="col-md-8">
+                            <div className="col-md-11">
                                 <div className="form-block">
                                     <div className="form-header">
-                                        <div className="mb-4">
+                                        <div className="mb-4 text-center">
                                             <h3>Sign Up on <strong>Logger</strong></h3>
                                             <p className="mb-4">Register to manage all your task's </p>
                                         </div>
@@ -154,7 +154,7 @@ const Register = ({ login }) => {
                                             <Button className="signinButton" onClick={handleSubmit(handleRegister)} type="submit"> Register </Button>
                                         </div>
                                     </form>
-                                    <div>
+                                    <div className="text-center">
                                         Already have an account? <Link to="/login" title="SIGN IN"> SIGN IN </Link>
                                     </div>
                                 </div>

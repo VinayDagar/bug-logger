@@ -180,7 +180,7 @@ const CheckBox = (props) => {
     return (
         <div className="position-relative ant-form-vertical">
             <Form.Item
-                className="from-field-input text-left"
+                className={`from-field-input text-left ${props.className}`}
                 label={props.label}
             >
                 <Controller

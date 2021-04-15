@@ -56,7 +56,11 @@ module.exports = function (domain) {
         foreignKey: "createdBy"
     });
 
-    domain.Task.belongsTo(domain.User, {
+    domain.Task.belongsTo(domain.ProjectMember, {
+        foreignKey: "assignedTo"
+    });
+
+    domain.ProjectMember.hasMany(domain.Task, {
         foreignKey: "assignedTo"
     });
 

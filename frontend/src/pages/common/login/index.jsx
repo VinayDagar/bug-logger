@@ -55,21 +55,21 @@ const Login = ({ login }) => {
         <div className="content">
             <div className="container">
                 <div className="row justify-content-center">
-                    <div className="col-md-5 image-background">
+                    <div className="col-md-6 image-background">
                         <img src={loginLeft} />
                     </div>
-                    <div className="col-md-7 form-background">
+                    <div className="col-md-6 form-background">
                         <div className="row justify-content-center">
-                            <div className="col-md-8">
+                            <div className="col-md-12">
                                 <div className="form-block">
                                     <div className="form-header">
-                                        <div className="mb-4">
+                                        <div className="mb-2 text-center">
                                             <h3>Sign In to <strong>Logger</strong></h3>
-                                            <p className="mb-4">Login to see your task list </p>
+                                            <p className="mb-3">Login to see your task list </p>
                                         </div>
                                     </div>
                                     <form className="form" onSubmit={handleSubmit(handleLogin)}>
-                                        <div className="form-group text-center requird-label">
+                                        <div className="form-group text-center">
                                             <FormFieldInput
                                                 attribute="email"
                                                 inputType="email"
@@ -84,7 +84,7 @@ const Login = ({ login }) => {
                                                 prefix={<MailOutlined style={{ color: 'rgba(0,0,0,0.7)' }} />}
                                             />
                                         </div>
-                                        <div className="form-group text-center requird-label">
+                                        <div className="form-group text-center">
                                             <FormFieldInput
                                                 attribute="password"
                                                 inputType="password"
@@ -107,17 +107,18 @@ const Login = ({ login }) => {
                                             <FormFieldInput
                                                 attribute="rememberEmail"
                                                 inputType="checkbox"
-                                                label="Remember me?"
+                                                className="checkbox-css"
+                                                // label="Remember me?"
                                                 control={control}
                                                 errors={errors}
                                             // prefix={<LockOutlined style={{ color: 'rgba(0,0,0,0.7)' }} />}
-                                            />
+                                            > Remember me? </FormFieldInput>
                                         </div>
                                         <div className="form-group text-center">
                                             <Button className="signinButton" onClick={handleSubmit(handleLogin)} type="submit"> SIGN IN </Button>
                                         </div>
                                     </form>
-                                    <div>
+                                    <div className="text-center">
                                         Don't have an account? <Link to="/register" title="SIGN UP"> SIGN UP </Link>
                                     </div>
                                 </div>

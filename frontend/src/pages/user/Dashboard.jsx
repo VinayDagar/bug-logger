@@ -13,6 +13,7 @@ const User = (props) => {
     const getProjects = async () => {
         try {
             const { projects } = await window.$http.get("project/list");
+            
             setProjectList(projects);
 
         } catch (err) {

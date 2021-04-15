@@ -23,8 +23,8 @@ const MemberTimeline = ({ name, date, isCreated }) => {
                             <>
                                 <h5 className="timeline-title"> Project Created </h5>
                                 <div className="d-flex justify-content-center align-items-center">
-                                    <h6> {name} </h6>
-                                    <div className="timeline-date">  {date ? moment(date).format("MMM DD, YYYY") : "-"} </div>
+                                    <h6 style={{ marginBottom: 0 }}> {name} </h6>
+                                    <div className="timeline-date-created">  {date ? moment(date).format("MMM DD, YYYY") : "-"} </div>
                                 </div>
                             </>
                             :

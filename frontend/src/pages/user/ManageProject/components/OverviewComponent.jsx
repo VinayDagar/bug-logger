@@ -3,6 +3,7 @@ import { Input } from "antd";
 import MemberRoleCard from "./MemberRoleCard";
 import MemberTimeline from "./MemberTimeline";
 import CustomModal from "elements/CustomModal";
+import { debounce } from "lodash";
 
 const OverviewComponent = ({ projectId, projectDetail, getProjectData }) => {
 
@@ -13,7 +14,7 @@ const OverviewComponent = ({ projectId, projectDetail, getProjectData }) => {
     const [selectedMember, setSelectedMember] = useState();
 
     useEffect(() => {
-        if(projectDetail) {
+        if (projectDetail) {
             setTimelineContent([
                 ...projectDetail.ProjectMembers,
                 { isCreated: true, name: projectDetail?.User?.name, createdAt: projectDetail.createdAt }
@@ -24,6 +25,25 @@ const OverviewComponent = ({ projectId, projectDetail, getProjectData }) => {
 
     const handleDescriptionChange = (val) => {
         setDescription(val.target.value);
+
+        setTimeout(() => {
+            handleUpdateProjectDescription();
+        }, 2000);
+    };
+
+    const debounceDescription = debounce(() => {
+        handleUpdateProjectDescription();
+    }, 2000);
+
+    const handleUpdateProjectDescription = async () => {
+        try {
+            // await window.$http.updateById("project/update-description", projectId, {
+            //     description
+            // });
+            console.log(description);
+        } catch (err) {
+            window.$utility.showErrorMessage(err.message);
+        }
     };
 
     const handleRoleChange = (val) => {

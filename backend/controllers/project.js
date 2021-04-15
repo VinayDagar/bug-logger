@@ -211,7 +211,7 @@ exports.assignTaskController = async (req, res, next) => {
             where: {
                 $and: [
                     {
-                        memberId,
+                        id: memberId,
                     }, {
                         projectId
                     }
@@ -399,6 +399,30 @@ exports.setMemberOwnership = async (req, res, next) => {
     }
 };
 
+exports.updateProjectDescription = async (req, res, next) => {
+    try {
+        const { projectId } = req.params;
+        const { description } = req.body;
+
+        const project = await domain.Project.findByPk(projectId);
+
+        if (!project) {
+            const error = new Error("Project does not exist!");
+            error.statusCode = 404;
+            return next(error);
+        }
+
+        await project.update({
+            description
+        });
+
+        const response = views.JsonView({ message: "description updated!" });
+        return res.status(200).json(response);
+    } catch (err) {
+        return next(err);
+    }
+};
+
 exports.removeMemberFromProject = async (req, res, next) => {
     try {
         const { projectId, memberId } = req.params;
@@ -433,6 +457,71 @@ exports.removeMemberFromProject = async (req, res, next) => {
 
         response = views.JsonView({ message: "removed" });
         return res.status(200).json(response);
+    } catch (err) {
+        return next(err);
+    }
+};
+
+exports.getProjectsSectionAndTaskList = async (req, res, next) => {
+    try {
+        const { projectId } = req.params;
+
+        const project = await domain.Project.findByPk(projectId);
+
+        if (!project) {
+            const error = new Error("Project not found!");
+            error.statusCode = 404;
+            return next(error);
+        }
+
+        const sections = await domain.Section.findAll({
+            where: {
+                projectId
+            },
+            attributes: ["id", "name", "createdBy"],
+            include: [{
+                model: domain.User,
+                attributes: ["name"]
+            }, {
+                model: domain.Task,
+                attributes: ["title", "description", "priority", "assignedTo", "status", "id"],
+                include: [{
+                    model: domain.ProjectMember,
+                    attributes: ["id", "name"]
+                }]
+            }]
+        });
+
+        const response = views.JsonView({ sections });
+        return res.status(200).json(response);
+
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+exports.getProjectMemberList = async (req, res, next) => {
+    try {
+        const { projectId } = req.params;
+
+        const project = await domain.Project.findByPk(projectId);
+
+        if (!project) {
+            const error = new Error("Project not found!");
+            error.statusCode = 404;
+            return next(error);
+        }
+
+        const projectMembers = await domain.ProjectMember.findAll({
+            where: {
+                projectId
+            }
+        });
+
+
+        const response = views.JsonView({ projectMembers });
+        return res.status(200).json(response);
+
     } catch (err) {
         return next(err);
     }

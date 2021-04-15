@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import OverviewComponent from "./components/OverviewComponent";
-// import ListComponent from "./components/ListComponent";
+import ListComponent from "./components/ListComponent";
 
 const tabData = [
     {
@@ -73,7 +73,7 @@ const ManageProject = (props) => {
                         projectId={projectId}
                         projectDetail={projectDetail}
                         getProjectData={() => getProjectData()}
-                    /> : ""
+                    /> : <ListComponent projectId={projectId} />
             }
 
         </>
