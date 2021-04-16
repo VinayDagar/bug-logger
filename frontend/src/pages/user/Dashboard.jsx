@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ProjectViewCard from "./components/ProjectViewCard";
+import { Link } from "react-router-dom";
 
 const User = (props) => {
     const [projectList, setProjectList] = useState([]);
@@ -39,8 +40,8 @@ const User = (props) => {
                     <div className="taskSectionTitle">
                         <h5 className="taskHubTitle"> Task Due Soon </h5>
                     </div>
-                    <div className="taskSectionRight">
-                        <div className="taskSectionRightLink"> See all my tasks </div>
+                    <div className="taskSectionRight">  
+                        <Link to="/user/my-task" className="taskSectionRightLink"> See all my tasks </Link>
                     </div>
                 </div>
             </div>

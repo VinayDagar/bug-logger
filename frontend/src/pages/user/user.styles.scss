@@ -75,6 +75,30 @@
     margin-bottom: 20px;
 }
 
+.taskListProjectName {
+    color                     : #151b26;
+    cursor                    : pointer;
+    text-decoration           : none;
+    background-color          : #e8ecee;
+    color                     : #151b26;
+    border-radius             : 10px;
+    box-sizing                : border-box;
+    -webkit-print-color-adjust: exact;
+    color-adjust              : exact;
+    display                   : block;
+    font-size                 : 12px;
+    font-weight               : 400;
+    height                    : 20px;
+    line-height               : 20px;
+    overflow                  : hidden;
+    padding                   : 0 8px;
+    text-align                : left;
+    white-space               : nowrap;
+    flex                      : 0 1 auto;
+    min-width                 : 1px;
+    text-overflow             : ellipsis;
+}
+
 // Manage Project
 
 .projectMain {

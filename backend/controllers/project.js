@@ -526,3 +526,64 @@ exports.getProjectMemberList = async (req, res, next) => {
         return next(err);
     }
 };
+
+exports.getMyTaskListController = async (req, res, next) => {
+    try {
+        const { loggedInUser } = req;
+
+        const projectMembers = await domain.ProjectMember.findAll({
+            where: {
+                memberId: loggedInUser.id
+            },
+            attributes: ["id"]
+        });
+
+        const taskList = await domain.Task.findAll({
+            where: {
+                assignedTo: {
+                    $in: projectMembers.map(a => a.id)
+                }
+            },
+            attributes: ["id", "title", "description", "priority", "status"],
+            include: [{
+                model: domain.User,
+                attributes: ["name", "email"]
+            }, {
+                model: domain.Section,
+                attributes: ["name", "id"],
+                include: [{
+                    model: domain.Project,
+                    attributes: ["id", "projectName"]
+                }]
+            }]
+        });
+
+        const response = views.JsonView({ taskList });
+        return res.status(200).json(response);
+
+    } catch (err) {
+        return next(err);
+    }
+};
+
+exports.updateTaskStatus = async (req, res, next) => {
+    try {
+        const { taskId } = req.params;
+        const { status } = req.body;
+
+        const task = await domain.Task.findByPk(taskId);
+
+        if (!task) {
+            const error = new Error("Task not found");
+            error.statusCode = 404;
+            return next(error);
+        }
+
+        await task.update({ status });
+
+        const response = views.JsonView({ message: "Updaetd" });
+        return res.status(200).json(response);
+    } catch (err) {
+        return next(err);
+    }
+};

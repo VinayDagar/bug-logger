@@ -8,7 +8,8 @@ const {
     getProjectDetailController, updateMemberRole,
     removeMemberOwnership, setMemberOwnership,
     removeMemberFromProject, updateProjectDescription,
-    getProjectsSectionAndTaskList, getProjectMemberList
+    getProjectsSectionAndTaskList, getProjectMemberList,
+    getMyTaskListController, updateTaskStatus
 } = require("../../controllers/project");
 // middlewares
 const validationSchema = require("../../application/validations");
@@ -86,6 +87,16 @@ router.post(
         authenticated,
         canAccess(["user"]),
         getProjectMemberList
+    ).get(
+        "/my-task",
+        authenticated,
+        canAccess(["user"]),
+        getMyTaskListController,
+    ).put(
+        "/update-task-status/:taskId",
+        authenticated,
+        canAccess(["user"]),
+        updateTaskStatus
     );
 
 module.exports = router;
