@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Input } from "antd";
+import { Input, Select } from "antd";
+import { PlusOutlined } from '@ant-design/icons';
 import MemberRoleCard from "./MemberRoleCard";
 import MemberTimeline from "./MemberTimeline";
 import CustomModal from "elements/CustomModal";
@@ -12,6 +13,8 @@ const OverviewComponent = ({ projectId, projectDetail, getProjectData }) => {
     const [description, setDescription] = useState();
     const [roleInput, setRoleInput] = useState();
     const [selectedMember, setSelectedMember] = useState();
+    const [userList, setUserList] = useState([]);
+    const [showAddMemberModal, setShowAddMemberModal] = useState(false);
 
     useEffect(() => {
         if (projectDetail) {
@@ -115,6 +118,31 @@ const OverviewComponent = ({ projectId, projectDetail, getProjectData }) => {
         }
     };
 
+    const handleShowAddProjectMemberModal = async () => {
+        try {
+            const { users } = await window.$http.get("common/get-user-list");
+            setUserList(users.map(a => ({ label: `${a.email} - ${a.name[0]}`, value: a.id })));
+
+            setShowAddMemberModal(true);
+
+        } catch (err) {
+            window.$utility.showErrorMessage(err.message);
+        }
+    };
+
+    const handelUserSelect = async (userId) => {
+        try {
+            await window.$http.rawPost(`project/add-project-member/${projectId}`, {
+                member: userId
+            });
+
+            setShowAddMemberModal(false);
+            getProjectData();
+        } catch (err) {
+            window.$utility.showErrorMessage(err.message);
+        }
+    };
+
     return (
         <div className="projectPageSection">
             <div className="projectPageOverview">
@@ -142,7 +170,15 @@ const OverviewComponent = ({ projectId, projectDetail, getProjectData }) => {
                                 </div>
                         </div>
                         <div className="memberSection-content">
-                            <div className="memberSection-memberGrid">
+                            <div className="memberSection-memberGrid" onClick={handleShowAddProjectMemberModal}>
+                                <div className="addMemberCard">
+                                    <div className="projectMemberAddButtonContainer">
+                                        <PlusOutlined />
+                                    </div>
+                                    <div className="projectMemberAddTextContainer">
+                                        <h6>Add Member</h6>
+                                    </div>
+                                </div>
                                 {
                                     projectDetail?.ProjectMembers && projectDetail.ProjectMembers.map(a => (
                                         <React.Fragment key={a.id}>
@@ -215,6 +251,32 @@ const OverviewComponent = ({ projectId, projectDetail, getProjectData }) => {
                     </div>
                 </div>
             </div>
+            <CustomModal
+                title="Add member to the project"
+                showModal={showAddMemberModal}
+                onClose={() => setShowAddMemberModal(false)}
+                closable={true}
+                destroyOnClose={true}
+            >
+                <div className="roleInputCotainer">
+                    <Select
+                        style={{ width: "100%" }}
+                        placeholder="Select user to add as a team member"
+                        showSearch={true}
+                        onChange={handelUserSelect}
+                    >
+                        {userList.map((el) => (
+                            <Select.Option
+                                key={el.value}
+                                value={el.value}
+                            >
+                                {el.label}
+                            </Select.Option>
+                        ))}
+                    </Select>
+                    <div className="btn btn-success" onClick={handelAddRole}> Done </div>
+                </div>
+            </CustomModal>
         </div>
     );
 };

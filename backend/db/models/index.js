@@ -9,6 +9,7 @@ const Team = require('./team');
 const TeamMember = require('./team-member');
 const Task = require('./task');
 const Section = require("./section");
+const Notification = require("./notification");
 
 const domain = {
     User,
@@ -19,7 +20,8 @@ const domain = {
     TeamMember,
     Task,
     Section,
-    ProjectMember
+    ProjectMember,
+    Notification
 };
 
 require('./associations')(domain);

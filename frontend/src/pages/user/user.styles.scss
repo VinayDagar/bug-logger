@@ -75,6 +75,52 @@
     margin-bottom: 20px;
 }
 
+.addMemberCard {
+    border-color       : transparent;
+    background         : var(--color-subtle-button-background);
+    border-radius      : 6px;
+    cursor             : pointer;
+    color              : var(--color-text-weak);
+    display            : flex;
+    fill               : var(--color-icon);
+    padding            : 8px;
+    outline            : none;
+    box-shadow         : none;
+    transition-duration: 200ms;
+    transition-property: background, border-color, box-shadow;
+    border             : 1px solid var(--color-border-weak);
+    justify-content    : center;
+    align-items        : center;
+
+    .projectMemberAddButtonContainer {
+        align-items    : center;
+        border         : 1px dashed;
+        border-radius  : 50%;
+        display        : flex;
+        flex-grow      : 0;
+        flex-shrink    : 0;
+        height         : 33px;
+        justify-content: center;
+        margin-right   : 8px;
+        width          : 33px;
+        cursor         : pointer;
+    }
+
+    .projectMemberAddTextContainer {
+        align-items: center;
+        display    : flex;
+        flex-grow  : 1;
+        cursor     : pointer;
+
+        .addMemberButtonText {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size  : 14px;
+            line-height: 20px;
+            font-weight: 500;
+        }
+    }
+}
+
 .taskListProjectName {
     color                     : #151b26;
     cursor                    : pointer;

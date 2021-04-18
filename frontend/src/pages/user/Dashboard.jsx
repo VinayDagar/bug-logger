@@ -3,10 +3,10 @@ import ProjectViewCard from "./components/ProjectViewCard";
 import { Link } from "react-router-dom";
 
 const User = (props) => {
-    const [projectList, setProjectList] = useState([]);
+    const [projectList, setProjectList] = useState();
 
     useEffect(() => {
-        if (!projectList.length) {
+        if (!projectList) {
             getProjects();
         }
     }, [projectList]);
@@ -55,7 +55,7 @@ const User = (props) => {
                 <div className="projectHubList">
                     <div className="projectList">
                         {
-                            projectList.map(a => (
+                            projectList?.length && projectList.map(a => (
                                 <div key={a.id} className="projectViewcardContainer" onClick={() => handleProjectClick(a.Project.id)}>
                                     <ProjectViewCard
                                         projectName={a?.Project?.projectName}

@@ -121,6 +121,28 @@ exports.addProjectMemberController = async (req, res, next) => {
             memberId: member
         });
 
+        const emaildata = {
+            name: member.name,
+            projectName: project.projectName,
+            createdBy: req.loggedInUser.name
+        };
+
+        // await configHolder.emailUtility.sendEmail({
+        //     type: "html",
+        //     data: emaildata,
+        //     templateName: "add-member",
+        //     to: member?.User?.email,
+        //     subject: `You have been added as an member  ${req.loggedInUser.name}`,
+        // });
+
+        await domain.Notification.create({
+            id: configHolder.generateUniqueId(),
+            title: `Added as an member by ${req.loggedInUser.name}`,
+            message: "Added as an member",
+            userId: member.id,
+            payload: emaildata,
+        });
+
         const response = views.JsonView({ message: "Member sucessfully added!" });
         return res.status(201).json(response);
 
@@ -216,7 +238,11 @@ exports.assignTaskController = async (req, res, next) => {
                         projectId
                     }
                 ]
-            }
+            },
+            include: [{
+                model: domain.User,
+                attributes: ["email"]
+            }]
         });
 
         if (!member) {
@@ -227,6 +253,28 @@ exports.assignTaskController = async (req, res, next) => {
 
         await task.update({
             assignedTo: memberId
+        });
+
+        const emaildata = {
+            name: member.name,
+            taskTitle: task.title,
+            projectName: project.projectName,
+            createdBy: req.loggedInUser.name
+        };
+        // await configHolder.emailUtility.sendEmail({
+        //     type: "html",
+        //     data: emaildata,
+        //     templateName: "assign-task",
+        //     to: member?.User?.email,
+        //     subject: `New Task Assiged to you by ${req.loggedInUser.name}`,
+        // });
+
+        await domain.Notification.create({
+            id: configHolder.generateUniqueId(),
+            title: `New Task Assiged to you by ${req.loggedInUser.name}`,
+            message: task.title,
+            userId: member.id,
+            payload: emaildata,
         });
 
         const response = views.JsonView({ message: "task assigned!" });

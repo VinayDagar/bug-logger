@@ -16,6 +16,7 @@ global.views = require("../application/views");
 
 configHolder.generateUniqueId = require('../application/helpers/generate-id');
 configHolder.jwtUtility = require('../utilities/jwt-utility');
+configHolder.emailUtility = require('../utilities/email-utility');
 configHolder.encryptUtility = require('../utilities/encrypt-utility');
 configHolder.smsUtility = require('../utilities/sms-utility');
 

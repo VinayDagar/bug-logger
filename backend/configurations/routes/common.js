@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const { validate } = require("express-validation");
 // Controllers
-const { registerController, loginController } = require("../../controllers/authentication");
+const { registerController, loginController, getUserListController } = require("../../controllers/authentication");
 // middlewares
 const validationSchema = require("../../application/validations");
 const { canAccess } = require("../../application/middlewares/access");
@@ -20,6 +20,11 @@ router.post(
         validate(validationSchema.loginValidation, {}, {}),
         canAccess(["anonymous"]),
         loginController,
+    ).get(
+        "/get-user-list",
+        authenticated,
+        canAccess(["user"]),
+        getUserListController
     );
 
 module.exports = router;

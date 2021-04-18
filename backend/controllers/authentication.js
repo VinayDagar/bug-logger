@@ -115,3 +115,21 @@ const createTokenAndReturn = async (user, res, callback, sendOtpInterval = true)
     }
 };
 
+exports.getUserListController = async (req, res, next) => {
+    try {
+        const users = await domain.User.findAll({
+            where: {
+                role: {
+                    $eq: "user"
+                }
+            },
+            attributes: ["email", "id", "name"]
+        });
+
+        const response = views.JsonView({ users });
+        return res.status(200).json(response);
+
+    } catch (err) {
+        return next(err);
+    }
+} 

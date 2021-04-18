@@ -103,5 +103,13 @@ module.exports = function (domain) {
         foreignKey: "sectionId"
     });
 
+    // ---------- Notification ------------------
+    domain.Notification.belongsTo(domain.User, {
+        foreignKey: "userId"
+    });
+
+    domain.User.hasMany(domain.Notification, {
+        foreignKey: "userId"
+    });
 
 };
