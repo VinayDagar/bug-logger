@@ -612,6 +612,7 @@
     min-width                 : 25px;
     width                     : 20px;
     margin-top                : 5px;
+    margin-right              : -8px;
 }
 
 
@@ -638,43 +639,101 @@
         }
     }
 
-    .assigneRight {
-        display    : flex;
-        flex       : 1 1 auto;
-        min-width  : 1px;
-        align-items: center;
-        display    : flex;
+}
+.assigneRight {
+    display    : flex;
+    flex       : 1 1 auto;
+    min-width  : 1px;
+    align-items: center;
+    display    : flex;
 
-        .assigneButton {
-            border-color       : transparent;
-            color              : #6f7782;
-            fill               : #6f7782;
-            padding-right      : 8px;
-            border-radius      : 6px;
-            cursor             : pointer;
-            align-items        : center;
-            box-sizing         : border-box;
-            display            : flex;
-            height             : 36px;
-            padding-left       : 8px;
-            background         : #fff;
-            border             : 1px solid #e8ecee;
-            border-radius      : 8px;
-            box-shadow         : none;
-            transition-duration: 200ms;
-            transition-property: background, border-color, box-shadow;
+    .assigneButton {
+        border-color       : transparent;
+        color              : #6f7782;
+        fill               : #6f7782;
+        padding-right      : 8px;
+        border-radius      : 6px;
+        cursor             : pointer;
+        align-items        : center;
+        box-sizing         : border-box;
+        display            : flex;
+        height             : 36px;
+        padding-left       : 8px;
+        background         : #fff;
+        border             : 1px solid #e8ecee;
+        border-radius      : 8px;
+        box-shadow         : none;
+        transition-duration: 200ms;
+        transition-property: background, border-color, box-shadow;
 
-            .assigneIconContainer {
-                border         : 1px dashed #6f7782;
-                fill           : #6f7782;
+        .assigneIconContainer {
+            border         : 1px dashed #6f7782;
+            fill           : #6f7782;
+            align-items    : center;
+            border-radius  : 50%;
+            box-sizing     : border-box;
+            display        : flex;
+            height         : 28px;
+            justify-content: center;
+            width          : 28px;
+            cursor         : pointer;
+        }
+    }
+}
+
+.slide-pane__overlay {
+    position           : fixed;
+    top                : 0px;
+    left               : 0px;
+    right              : 0px;
+    bottom             : 0px;
+    z-index            : 1000;
+    // background-color: rgba(0, 0, 0, 0);
+}
+
+.taskDetailPanel {
+    .labelRowStructure {
+        margin-bottom: 4px;
+        display      : flex;
+        flex-shrink  : 0;
+
+        .labelRowStructure-left {
+            padding-right: 8px;
+            text-align   : left;
+            flex         : 0 0 auto;
+
+            .lableLeftContainer {
+                justify-content: flex-start;
                 align-items    : center;
-                border-radius  : 50%;
-                box-sizing     : border-box;
                 display        : flex;
-                height         : 28px;
-                justify-content: center;
-                width          : 28px;
-                cursor         : pointer;
+                height         : 36px;
+
+                // justify-content: flex-end;
+                .label {
+                    font-family  : -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+                    font-size    : 12px;
+                    line-height  : 18px;
+                    color        : var(--color-text-weak);
+                    max-width    : 140px;
+                    overflow     : hidden;
+                    padding-top  : 2px;
+                    text-overflow: ellipsis;
+                    white-space  : nowrap;
+                    display      : inline-block;
+                }
+            }
+        }
+
+        .labelRowStructure-right {
+            display  : flex;
+            flex     : 1 1 auto;
+            min-width: 1px;
+
+            .labelRowStructure-content {
+                align-items: center;
+                display    : flex;
+                flex       : 1 1 auto;
+                min-width  : 1px;
             }
         }
     }

@@ -274,7 +274,8 @@ exports.assignTaskController = async (req, res, next) => {
             title: `New Task Assiged to you by ${req.loggedInUser.name}`,
             message: task.title,
             userId: member.id,
-            payload: emaildata,
+            payload: { ...emaildata, taskId },
+            type: "task_assign"
         });
 
         const response = views.JsonView({ message: "task assigned!" });

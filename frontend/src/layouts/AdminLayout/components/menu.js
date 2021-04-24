@@ -20,7 +20,7 @@ const items = (role) => {
             },
             {
                 title: 'Inbox',
-                url: '/user/notifications',
+                url: '/user/inbox',
                 icon: <BellOutlined />,
                 showTo: ["user"],
             }

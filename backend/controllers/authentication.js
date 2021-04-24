@@ -132,4 +132,19 @@ exports.getUserListController = async (req, res, next) => {
     } catch (err) {
         return next(err);
     }
-} 
+};
+
+exports.getUserNotification = async (req, res, next) => {
+    try {
+        const notifications = await domain.Notification.findAll({
+            where: {
+                userId: req.loggedInUser.id
+            }
+        });
+
+        const response = views.JsonView({ notifications });
+        return res.status(200).json(response);
+    } catch (err) {
+        return next(err);
+    }
+};
