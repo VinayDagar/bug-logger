@@ -1,7 +1,7 @@
 import React from 'react';
 import { HomeOutlined, CheckCircleOutlined, BellOutlined } from '@ant-design/icons';
 
-const items = (role) => {
+const items = (role,) => {
     const roleRoute = role === "super_admin" ? "admin" : role;
 
     return {
@@ -23,6 +23,7 @@ const items = (role) => {
                 url: '/user/inbox',
                 icon: <BellOutlined />,
                 showTo: ["user"],
+                showNotificationIcon: true
             }
             // {
             //     title: 'System',

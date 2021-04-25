@@ -2,7 +2,8 @@ const { Router } = require("express");
 const { validate } = require("express-validation");
 // Controllers
 const { registerController, loginController,
-    getUserListController, getUserNotification
+    getUserListController, getUserNotification,
+    sendMessageController
 } = require("../../controllers/authentication");
 // middlewares
 const validationSchema = require("../../application/validations");
@@ -32,6 +33,11 @@ router.post(
         authenticated,
         canAccess(["user"]),
         getUserNotification
+    ).post(
+        "/send-message",
+        authenticated,
+        canAccess(["user"]),
+        sendMessageController
     );
 
 module.exports = router;

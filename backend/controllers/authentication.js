@@ -148,3 +148,25 @@ exports.getUserNotification = async (req, res, next) => {
         return next(err);
     }
 };
+
+exports.sendMessageController = async (req, res, next) => {
+    try {
+        const { to, message } = req.body;
+
+        await domain.Message.create({
+            id: configHolder.generateUniqueId(),
+            from: req.loggedInUser.id,
+            to, message,
+        });
+
+        Pusher.trigger("logger_message", "message:send", {
+            message: "message created"
+        });
+
+        const response = views.JsonView({ message: "message sent" });
+        return res.status(201).json(response);
+
+    } catch (err) {
+        return next(err);
+    }
+};

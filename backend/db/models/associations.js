@@ -112,4 +112,26 @@ module.exports = function (domain) {
         foreignKey: "userId"
     });
 
+    // ---------- Message ------------------
+
+    domain.Message.belongsTo(domain.User, {
+        foreignKey: "from",
+        as: "sender"
+    });
+
+    domain.User.hasMany(domain.Message, {
+        foreignKey: "from",
+        as: "sender"
+    });
+
+    domain.Message.belongsTo(domain.User, {
+        foreignKey: "to",
+        as: "reciever"
+    });
+
+    domain.User.hasMany(domain.Message, {
+        foreignKey: "to",
+        as: "reciever"
+    });
+
 };

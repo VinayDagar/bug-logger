@@ -32,6 +32,11 @@ const Sidebar = (props) => {
                 return <Menu.Item key={el.title}>
                     <Link to={el.url}>
                         {el.icon || ''}
+                        {
+                            el.showNotificationIcon
+                            && props.isMessageRecieved &&
+                            <div className="notification"> notification</div>
+                        }
                         <span>{el.title}</span>
                     </Link>
                 </Menu.Item>;
@@ -43,11 +48,11 @@ const Sidebar = (props) => {
     return (
         <div style={{ width: 256 }}>
             <Menu
-                defaultSelectedKeys={[navigationItems(role).items[0].title]}
+                defaultSelectedKeys={[navigationItems(role, props.isMessageRecieved).items[0].title]}
                 defaultOpenKeys={['sub1']}
                 mode="inline"
             >
-                {MenuItems(navigationItems(role).items)}
+                {MenuItems(navigationItems(role, props.isMessageRecieved).items)}
             </Menu>
         </div>
     );
@@ -55,7 +60,8 @@ const Sidebar = (props) => {
 
 const mapStateToProps = ({ auth }) => {
     return {
-        user: auth.user
+        user: auth.user,
+        isMessageRecieved: auth.isMessageRecieved
     };
 };
 

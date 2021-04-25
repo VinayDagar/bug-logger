@@ -1,9 +1,10 @@
-import { LOGIN, LOGOUT, UPDATE_USER } from './types';
+import { LOGIN, LOGOUT, UPDATE_USER,MESSAGE_RECIEVED } from './types';
 import secureStorage from "../../services/secureStorage";
 
 const initialState = {
     user: {},
-    isAuthenticated: false
+    isAuthenticated: false,
+    isMessageRecieved: false
 };
 
 export default function (state = initialState, { type, payload }) {
@@ -32,6 +33,12 @@ export default function (state = initialState, { type, payload }) {
                 ...state,
                 user: payload,
                 isAuthenticated: true
+            };
+        }
+        case MESSAGE_RECIEVED: {
+            return {
+                ...state,
+                isMessageRecieved: true,
             };
         }
         default: return state;

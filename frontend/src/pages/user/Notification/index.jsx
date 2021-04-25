@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import SlidingPane from "react-sliding-pane";
 import "react-sliding-pane/dist/react-sliding-pane.css";
-import { UserOutlined } from "@ant-design/icons";
+import { UserOutlined, CalendarOutlined, BorderOutlined } from "@ant-design/icons";
+import moment from "moment";
 
 import ActivityComponent from "./components/Activity";
 
@@ -72,9 +73,9 @@ const Notifications = () => {
                     selectedTab == "activity" ?
                         <div>
                             {
-                                notificationList?.length && notificationList.map(a => (
+                                notificationList?.length ? notificationList.map(a => (
                                     <ActivityComponent onClick={() => handelNotificationClick(a)} key={a.id} title={a.title} data={a} description={a.message} />
-                                ))
+                                )) : "No Notificitation to show!"
                             }
                         </div>
                         : ""
@@ -102,7 +103,65 @@ const Notifications = () => {
                                         <div className="assigneIconContainer">
                                             <UserOutlined />
                                         </div>
-                                        <div> No Assigne </div>
+                                        <div className="mx-3"> No Assigne </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="labelRowStructure my-3">
+                        <div className="labelRowStructure-left">
+                            <div className="lableLeftContainer">
+                                <label className="lable"> Created Date: </label>
+                            </div>
+                        </div>
+                        <div className="labelRowStructure-right">
+                            <div className="labelRowStructure-content">
+                                <div className="assigneRight">
+                                    <div className="assigneButton">
+                                        <div className="assigneIconContainer">
+                                            <CalendarOutlined />
+                                        </div>
+                                        <div className="mx-3"> {moment(selectedNotification.createdAt).format("YYYY MMM DD, HH:mm")} </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="labelRowStructure my-3">
+                        <div className="labelRowStructure-left">
+                            <div className="lableLeftContainer">
+                                <label className="lable"> Project: </label>
+                            </div>
+                        </div>
+                        <div className="labelRowStructure-right">
+                            <div className="labelRowStructure-content">
+                                <div className="assigneRight">
+                                    <div className="assigneButton">
+                                        <div className="assigneIconContainer">
+                                            <BorderOutlined />
+                                        </div>
+                                        <div className="mx-3"> { selectedNotification?.payload?.projectName || "Current" } </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="notificationFooter">
+                        <div className="footerStructure">
+                            <div className="structureIcon">
+                                <div className="avatar"> { selectedNotification?.payload?.createdBy.slice(0, 2) } </div>
+                            </div>
+                            <div className="footerContent">
+                                <div className="contentHeader">
+                                    <div className="contentContainer">
+                                        <span className="content">
+                                            <a className="actorName"> { selectedNotification?.payload?.createdBy } </a>
+                                            created this task
+                                        </span>
+                                        <span className="metaContainer">
+                                            <span> 4 days ago </span>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
